@@ -23,11 +23,18 @@ using std::string;
 constexpr int DIVIDE_BY_ZERO = -99;
 
 //------------------------------------------------------------------------------
+// throws an exception of type int
+//------------------------------------------------------------------------------
+void throwInt() {
+    throw 20;
+}
+
+//------------------------------------------------------------------------------
 // Integer division, catching divide by zero.
 //------------------------------------------------------------------------------
 inline int intDivEx(int numerator, int denominator) {
     if (denominator == 0)
-        throw std::overflow_error("Divide by zero exception");
+        throw std::overflow_error("Divide by zero!!!!");
 
     return numerator / denominator;
 }
@@ -47,10 +54,13 @@ int main() {
 
     cout << "Exception demo\n\n";
 
+    // store results of try block operations
     int divResult;
-    int intValueOfStr;
+    int intValueOfStr = -99;
+
     try {
-        intValueOfStr = std::stoi("xx");
+        throwInt();
+        intValueOfStr = std::stoi("xx");    // "0x123"
         divResult = intDivEx(100, 0);
     }
     catch (std::invalid_argument& e) {
@@ -60,15 +70,34 @@ int main() {
     catch (std::out_of_range& e) {
         cout << '\n' << e.what() << '\n';
         // ... handle error
+        // errorHandler(e);
     }
-    catch (std::overflow_error& e) {
+    //catch (std::overflow_error& e) {
+    //    cout << '\n' << e.what() << '\n';
+    //  // ... handle error
+    //  // errorHandler(e);
+    //}
+    catch (std::exception& e) {
         cout << '\n' << e.what() << '\n';
         // ... handle error
+        // errorHandler(e);
+    }
+    catch (int e) {
+        cout << "This in was thrown: " << e << '\n';
+        // ... handle error
+        // errorHandler(e);
+    }
+    catch (...) {
+        cout << "Unknown error occurred\n";
+        // ... handle error
+        // errorHandler(e);
     }
 
     // execution resumes after catch block,
     // unless we exit() from the catch block
     cout << "After catch block\n\n";
+    cout << "Result of divide: " << intDivEx << '\n';
+    cout << "Result of std::stoi(): " << intValueOfStr << '\n';
 
     cout << "Template function tMax<>() demo\n\n";
 
