@@ -25,7 +25,7 @@ constexpr int DIVIDE_BY_ZERO = -99;
 //------------------------------------------------------------------------------
 // throws an exception of type int
 //------------------------------------------------------------------------------
-void throwInt() {
+inline void throwInt() {
     throw 20;
 }
 
