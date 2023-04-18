@@ -45,15 +45,25 @@ inline T const& tMax(T const& a, T const& b) {
 //------------------------------------------------------------------------------
 int main() {
 
-    cout << "Divide by zero exception demo\n\n";
+    cout << "Exception demo\n\n";
 
     int divResult;
+    int intValueOfStr;
     try {
+        intValueOfStr = std::stoi("xx");
         divResult = intDivEx(100, 0);
+    }
+    catch (std::invalid_argument& e) {
+        cout << '\n' << e.what() << '\n';
+        // ... handle error
+    }
+    catch (std::out_of_range& e) {
+        cout << '\n' << e.what() << '\n';
+        // ... handle error
     }
     catch (std::overflow_error& e) {
         cout << '\n' << e.what() << '\n';
-        //exit(DIVIDE_BY_ZERO);
+        // ... handle error
     }
 
     // execution resumes after catch block,
