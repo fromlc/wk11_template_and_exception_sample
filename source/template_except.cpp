@@ -60,7 +60,7 @@ inline int intDivEx(int numerator, int denominator) {
 // template function tMax
 //------------------------------------------------------------------------------
 template <typename T>
-inline T const& tMax(T const& a, T const& b) {
+T tMax(T a, T b) {
     return a < b ? b : a;
 }
 
@@ -76,15 +76,15 @@ int main() {
     int intValueOfStr = -99;
 
     try {
-        throwChar();
-        throwInt();
+        //throwChar();
+        //throwInt();
         intValueOfStr = std::stoi("xx");    // "0x123"
         divResult = intDivEx(100, 0);
     }
-    catch (std::invalid_argument& e) {
-        cout << '\n' << e.what() << '\n';
-        // ... handle error
-    }
+    //catch (std::invalid_argument& e) {
+    //    cout << '\n' << e.what() << '\n';
+    //    // ... handle error
+    //}
     catch (std::out_of_range& e) {
         cout << '\n' << e.what() << '\n';
         // ... handle error
@@ -95,11 +95,11 @@ int main() {
     //  // ... handle error
     //  // errorHandler(e);
     //}
-    catch (std::exception& e) {
-        cout << '\n' << e.what() << '\n';
-        // ... handle error
-        // errorHandler(e);
-    }
+    //catch (std::exception& e) {
+    //    cout << '\n' << e.what() << '\n';
+    //    // ... handle error
+    //    // errorHandler(e);
+    //}
     catch (int e) {
         cout << "This int was thrown: " << e << '\n';
         // ... handle error
