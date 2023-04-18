@@ -30,6 +30,23 @@ inline void throwInt() {
 }
 
 //------------------------------------------------------------------------------
+// causes an exception of type char to be thrown
+//------------------------------------------------------------------------------
+void throwChar5() { 
+    throw '?';
+}
+
+void throwChar4() { throwChar5(); }
+
+void throwChar3() { throwChar4(); }
+
+void throwChar2() { throwChar3(); }
+
+void throwChar1() { throwChar2(); }
+
+void throwChar() { throwChar1(); }
+
+//------------------------------------------------------------------------------
 // Integer division, catching divide by zero.
 //------------------------------------------------------------------------------
 inline int intDivEx(int numerator, int denominator) {
@@ -59,6 +76,7 @@ int main() {
     int intValueOfStr = -99;
 
     try {
+        throwChar();
         throwInt();
         intValueOfStr = std::stoi("xx");    // "0x123"
         divResult = intDivEx(100, 0);
@@ -83,7 +101,12 @@ int main() {
         // errorHandler(e);
     }
     catch (int e) {
-        cout << "This in was thrown: " << e << '\n';
+        cout << "This int was thrown: " << e << '\n';
+        // ... handle error
+        // errorHandler(e);
+    }
+    catch (char e) {
+        cout << "This char was thrown: " << e << '\n';
         // ... handle error
         // errorHandler(e);
     }
